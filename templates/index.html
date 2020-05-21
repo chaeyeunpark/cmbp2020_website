@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+	<title>Score check page for CMBP2020</title>
+	<style>
+table.sheet_score
+{
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+table.sheet_score td
+{
+	border: 1px black solid;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+table.sheet_score .pr
+{
+	background-color: yellow;
+}
+	</style>
+</head>
+<body>
+	<form method="post">
+		<label for="surname">Surname:</label>
+		<input type="text" id="surname" name="surname"><br><br>
+		<label for="firstname">First name:</label>
+		<input type="text" id="firstname" name="firstname"><br><br>
+		<label for="studentnumber">Matrikelnummer:</label>
+		<input type="text" id="studentnumber" name="studentnumber"><br><br>
+		<input type="submit" value="Submit">
+	</form>
+	{{ msg }}
+	{% for sheet_number, score in scores.items() %}
+		<h3>Sheet {{ sheet_number }}</h3>
+		<table class="sheet_score">
+		<tr class="pr">
+			{% for prn,s in score %} <td> {{ prn }} </td> {% endfor %}
+		</tr>
+		<tr class="score">
+			{% for prn,s in score %} <td> {{ s }} </td> {% endfor %}
+		</tr>
+		</table>
+	{% endfor %}
+</body>
+</html>
